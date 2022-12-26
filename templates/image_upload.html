@@ -8,25 +8,24 @@
 
     </div>
     <div id="upload_form_container">
-        <form enctype="multipart/form-data" method="POST">
-            <label for="petname">Pet Name</label>
+        <form enctype="multipart/form-data" method="POST" action="{{ url_for('img_processing') }}">
+            <label for="pet_name">Pet Name</label>
             <br>
-                <input type="text" name="petname"
+                <input type="text" name="pet_name"
                 placeholder="Pet's name, ex: Zeus, Luna, etc."
-                value="{{ request.form['petname'] }}">
+                value="{{ request.form['pet_name'] }}">
             <br>
-            <label for="pettype">Pet Type</label>
+            <label for="pet_type">Pet Type</label>
             <br>
-            <select name="pettype">
-                <option value="dog">Dog</option>
-                <option value="cat">Cat</option>
-                <option value="ferret">Ferret</option>
-                <option value="snake">Snake</option>
+            <select name="pet_type">
+                {% for type in data["Pet types"] %}
+                    <option value="{{ type }}">{{ type }}</option>
+                {% endfor %}
             </select>
             <br>
-            <label for="imagefile">Upload Image</label>
+            <label for="image_file">Upload Image</label>
             <br>
-            <input type="file" name="imagefile">
+            <input type="file" name="image_file">
             <br>
             <input type="submit">
         </form>
